@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de Apps Móviles</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Creador de Apps Móviles</h1>
+        <form id="promptForm" method="post" action="process.php">
+            <label for="prompt">Introduce tu comando:</label>
+            <textarea id="prompt" name="prompt" rows="4" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="response">
+            <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['prompt'])): ?>
+                <?php echo htmlspecialchars(processPrompt($_POST['prompt'])); ?>
+            <?php endif; ?>
+        </div>
+        <div id="downloads">
+            <?php if (file_exists('output/app-release.apk')): ?>
+                <a href="output/app-release.apk" class="download-button">Descargar App Android</a>
+            <?php endif; ?>
+            <?php if (file_exists('output/YourAppName.ipa')): ?>
+                <a href="output/YourAppName.ipa" class="download-button">Descargar App iOS</a>
+            <?php endif; ?>
+        </div>
+    </div>
+</body>
+</html>

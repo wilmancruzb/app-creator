@@ -1,0 +1,5 @@
+{
+    "require": {
+        "openai/openai": "^1.0"
+    }
+}
